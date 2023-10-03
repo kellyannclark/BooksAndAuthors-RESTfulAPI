@@ -1,9 +1,10 @@
 const express = require('express');
 const app = express();
+const gospelBooksController = require('./controllers/gospelBooks');
 
-app.get('/', (req, res) => {
-    res.send("Kelly");
-});
+app.get('/', gospelBooksController.kellyRoute);
+
+app.get('/hannah', gospelBooksController.hannahRoute);
 
 const port = 3000;
 
