@@ -1,8 +1,14 @@
-const routes = require('express').Router();
-const gospelBooksController = require('../controllers/gospelBooks');
+const router = require('express').Router();
 
-routes.get('/', gospelBooksController.kellyRoute);
+router.use("/", require("./swagger"));
 
-routes.get('/hannah', gospelBooksController.hannahRoute);
+router.get("/", (req, res) => {
+    res.send("Hello World");
+});
 
-module.exports = routes;
+
+router.use("/gospelbooks", require("./users")); 
+
+module.exports = router;
+
+
