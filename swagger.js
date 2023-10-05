@@ -6,11 +6,11 @@ const doc = {
         description: "Gospel Books Api"
     },
     host: "localhost:3000",
-    schemes: ["https", "http"]
+    schemes: ["http", "https"]
 };
 
 const outputFile = "./swagger.json";
-const endpointsFiles = ["./routes/users.js"];
+const endpointsFiles = ["./routes/index.js"];
 
 //this will generate swagger.json
 swaggerAutogen(outputFile, endpointsFiles, doc);

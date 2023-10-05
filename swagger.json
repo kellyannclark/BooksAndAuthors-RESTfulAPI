@@ -12,7 +12,27 @@
     "https"
   ],
   "paths": {
-    "/{id}": {
+    "/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api-docs": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/gospelbooks/{id}": {
       "get": {
         "tags": [
           "Gospelbooks"
@@ -104,7 +124,7 @@
         }
       }
     },
-    "/": {
+    "/gospelbooks/": {
       "get": {
         "tags": [
           "Gospelbooks"

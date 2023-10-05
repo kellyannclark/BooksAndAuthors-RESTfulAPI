@@ -23,7 +23,7 @@ Content-Type: application/json
 {
       "title": "The Miracle of Forgiveness",
       "author": "Spencer W. Kimball",
-      "pages": 444,
+      "pages": 555,
       "topic": "Religious"
 }
 
