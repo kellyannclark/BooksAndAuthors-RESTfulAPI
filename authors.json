@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Spencer W. Kimball",
+        "birthYear": 1895,
+        "nationality": "American",
+        "publishedBooks": [
+            "The Miracle of Forgiveness",
+            "The Teachings of Spencer W. Kimball"
+        ]
+    },
+    {
+        "name": "Boyd K. Packer",
+        "birthYear": 1924,
+        "nationality": "American",
+        "publishedBooks": [
+            "The Holy Temple",
+            "Let Not Your Heart Be Troubled"
+        ]
+    }
+]

@@ -18,17 +18,34 @@ const getSingle = async (req, res) => {
     const userId = new ObjectId(req.params.id);
     const result = await mongodb.getDatabase().db().collection("gospelbooks").find({_id: userId});
     result.toArray().then((gospelbooks) => {
-       res.setHeader("Content-Type", "application/json");
-       res.status(200).json(gospelbooks[0]);
+        if (gospelbooks.length > 0) {
+            const book = gospelbooks[0];
+
+            if (book.availability) {
+                // Book is available
+                res.status(200).json({ book, message: 'Book is available' });
+            } else {
+                // Book is unavailable
+                res.status(200).json({ book, message: 'Book is unavailable' });
+            }
+        } else {
+            res.status(404).json("Book not found");
+        }
     });
-}
+};
+
+
 const createBook = async (req, res) => {
     //#swagger.tags=["Gospelbooks"]
     const book = {
         title: req.body.title,
         author: req.body.author,
         pages: parseInt(req.body.pages),
-        topic: req.body.topic
+        topic: req.body.topic,
+        publicationDate: parseInt(req.body.publicationDate),  
+        language: req.body.language,  
+        availability: req.body.availability === true || req.body.availability === 'true'
+
     };
 
     const response = await mongodb.getDatabase().db().collection("gospelbooks").insertOne(book);
@@ -46,7 +63,11 @@ const updateBook = async (req, res) => {
         title: req.body.title,
         author: req.body.author,
         pages: parseInt(req.body.pages),
-        topic: req.body.topic
+        topic: req.body.topic,
+        publicationDate: parseInt(req.body.publicationDate),  
+        language: req.body.language,  
+        availability: req.body.availability === true || req.body.availability === 'true'
+
     };
 
     const response = await mongodb.getDatabase().db().collection("gospelbooks").replaceOne({ _id: userId } ,book);
