@@ -5,7 +5,7 @@ const passport = require('passport');
 const GitHubStrategy = require('passport-github2').Strategy;
 const cors = require('cors');
 const mongodb = require('./data/database');
-const env = require("dotenv").config();
+//const env = require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 3000;
