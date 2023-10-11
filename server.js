@@ -29,15 +29,15 @@ app
 // Routes
 app.use("/", require("./routes"));
 
-// GitHub OAuth Strategy
+// GitHub OAuth 
 passport.use(new GitHubStrategy({
   clientID: process.env.GITHUB_CLIENT_ID,
   clientSecret: process.env.GITHUB_CLIENT_SECRET,
   callbackURL: process.env.CALLBACK_URL,
 }, (accessToken, refreshToken, profile, done) => {
-  // User.findOneOrCreate({ githubId: profile.id }, (err, user) => {
-  //   return done(err, user);
-  // });
+  User.findOneOrCreate({ githubId: profile.id }, (err, user) => {
+    return done(err, user);
+  });
   return done(null, profile);
 }));
 
