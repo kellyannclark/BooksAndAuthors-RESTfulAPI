@@ -12,22 +12,29 @@ const port = process.env.PORT || 3000;
 
 // Middleware
 app
-  .use(cors({
-    origin: '*', 
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Z-Key'],
-  }))
   .use(bodyParser.json())
   .use(session({
     secret: "secret",
     resave: false,
     saveUninitialized: true,
   }))
-  .use(passport.initialize())
-  .use(passport.session());
-
-// Routes
-app.use("/", require("./routes"));
+.use(passport.initialize())  
+.use(passport.session())
+.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Z-Key, Authorization"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "POST, GET, PUT, PATCH, OPTIONS, DELETE"
+  );
+  next();
+})
+.use(cors({ methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH']}))
+.use(cors({ origin: "*"}))
+.use("/", require("./routes"));
 
 // GitHub OAuth 
 passport.use(new GitHubStrategy({
